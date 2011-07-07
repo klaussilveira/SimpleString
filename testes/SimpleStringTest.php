@@ -1,6 +1,4 @@
 <?php
-
-require_once 'PHPUnit/Framework.php';
 require_once 'SimpleString.class.php';
 
 class SimpleStringTest extends PHPUnit_Framework_TestCase {
