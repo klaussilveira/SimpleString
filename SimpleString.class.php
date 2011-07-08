@@ -54,7 +54,6 @@ class SimpleString {
 			'preg_replace_callback',
 			'preg_match_all',
 			'preg_match',
-			'preg_split',
 		);
 		
 		/**
@@ -64,6 +63,7 @@ class SimpleString {
 			'explode',
 			'split',
 			'str_split',
+			'preg_split',
 		);
 		
 		/**
