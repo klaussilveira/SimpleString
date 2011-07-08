@@ -2,7 +2,7 @@
 
 require('SimpleString.class.php');
 
-$string = new SimpleString('Lorem ipsum dolor sit amet lorem ipsum');
+$string = new SimpleString('lorem ipsum dolor sit amet lorem ipsum');
 $string->shorten(10);
 $string->toSentenceCase();
 echo $string;
