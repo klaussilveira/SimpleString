@@ -151,7 +151,7 @@ class SimpleString {
 			$this->string = substr($this->string, 0, $limit);
 			
 			if($round) {
-				$word = strpos($this->string, ' ');
+				$word = strrpos($this->string, ' ');
 				$this->string = substr($this->string, 0, $word);
 			}
 		}
