@@ -6,9 +6,9 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase {
 
 	public function testDemo(){
 		//Cumulative changes
-		$string = new SimpleString('Lorem ipsum dolor sit amet lorem ipsum');
+		$string = new SimpleString('lorem ipsum dolor sit amet lorem ipsum');
 		$string->shorten(10);
-		$this->assertEquals('Lorem ipsu', $string->__toString());
+		$this->assertEquals('lorem ipsu', $string->__toString());
 		$string->toSentenceCase();
 		$this->assertEquals('Lorem ipsu', $string->__toString());
 		
