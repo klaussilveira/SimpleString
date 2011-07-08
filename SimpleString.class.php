@@ -52,9 +52,6 @@ class SimpleString {
 			'preg_replace',
 			'preg_filter',
 			'preg_replace_callback',
-			'preg_match_all',
-			'preg_match',
-			'preg_split',
 		);
 		
 		/**
@@ -63,6 +60,10 @@ class SimpleString {
 		$invalid = array(
 			'explode',
 			'split',
+			'str_split',
+			'preg_split',
+			'preg_match',
+			'preg_match_all',
 		);
 		
 		/**
@@ -74,7 +75,7 @@ class SimpleString {
 		} elseif(function_exists("str_$name")) {
 			$name = "str_$name";
 		} elseif(!function_exists($name)) {
-			throw new Exception('Function does not exist.');
+			throw new BadMethodCallException('Function does not exist.');
 			return false;
 		} 
 		
@@ -82,7 +83,7 @@ class SimpleString {
 		 * If our built-in function is invalid, meaning that it doesn't return a string, we throw an exception and leave
 		 */
 		if(in_array($name, $invalid)) {
-			throw new Exception('Function returns an array, while SimpleString only works with string return values.');
+			throw new BadMethodCallException('Function does not returns a string, while SimpleString only works with string return values.');
 			return false;
 		}
 		
@@ -104,11 +105,11 @@ class SimpleString {
     }
     
     /**
-	 * Inserts a string at the end of another string
-	 * 
-	 * @access public
-	 * @param string $name String to be appended
-	 */
+     * Inserts a string at the end of another string
+     * 
+     * @access public
+     * @param string $name String to be appended
+     */
     public function append($string) {
     	$this->string .= $string;
     	
@@ -150,7 +151,7 @@ class SimpleString {
 			$this->string = substr($this->string, 0, $limit);
 			
 			if($round) {
-				$word = strpos($this->string, ' ');
+				$word = strrpos($this->string, ' ');
 				$this->string = substr($this->string, 0, $word);
 			}
 		}
@@ -416,7 +417,7 @@ class SimpleString {
 	 * @return int String lenght
 	 */
 	public function lenght() {
-		return strlen($this->lenght);
+		return strlen($this->string);
 	}
 	
 	/**
@@ -426,7 +427,7 @@ class SimpleString {
 	 * @return int Word count
 	 */
 	public function words() {
-		return str_word_count($this->lenght);
+		return str_word_count($this->string);
 	}
 	
 	/**
