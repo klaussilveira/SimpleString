@@ -417,7 +417,7 @@ class SimpleString {
 	 * @return int String lenght
 	 */
 	public function lenght() {
-		return strlen($this->lenght);
+		return strlen($this->string);
 	}
 	
 	/**
@@ -427,7 +427,7 @@ class SimpleString {
 	 * @return int Word count
 	 */
 	public function words() {
-		return str_word_count($this->lenght);
+		return str_word_count($this->string);
 	}
 	
 	/**
