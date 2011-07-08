@@ -63,6 +63,7 @@ class SimpleString {
 		$invalid = array(
 			'explode',
 			'split',
+			'str_split',
 		);
 		
 		/**
