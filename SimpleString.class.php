@@ -52,8 +52,6 @@ class SimpleString {
 			'preg_replace',
 			'preg_filter',
 			'preg_replace_callback',
-			'preg_match_all',
-			'preg_match',
 		);
 		
 		/**
@@ -64,6 +62,8 @@ class SimpleString {
 			'split',
 			'str_split',
 			'preg_split',
+			'preg_match',
+			'preg_match_all',
 		);
 		
 		/**
@@ -83,7 +83,7 @@ class SimpleString {
 		 * If our built-in function is invalid, meaning that it doesn't return a string, we throw an exception and leave
 		 */
 		if(in_array($name, $invalid)) {
-			throw new BadMethodCallException('Function returns an array, while SimpleString only works with string return values.');
+			throw new BadMethodCallException('Function does not returns a string, while SimpleString only works with string return values.');
 			return false;
 		}
 		
