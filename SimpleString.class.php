@@ -74,7 +74,7 @@ class SimpleString {
 		} elseif(function_exists("str_$name")) {
 			$name = "str_$name";
 		} elseif(!function_exists($name)) {
-			throw new Exception('Function does not exist.');
+			throw new BadMethodCallException('Function does not exist.');
 			return false;
 		} 
 		
@@ -82,7 +82,7 @@ class SimpleString {
 		 * If our built-in function is invalid, meaning that it doesn't return a string, we throw an exception and leave
 		 */
 		if(in_array($name, $invalid)) {
-			throw new Exception('Function returns an array, while SimpleString only works with string return values.');
+			throw new BadMethodCallException('Function returns an array, while SimpleString only works with string return values.');
 			return false;
 		}
 		
@@ -104,11 +104,11 @@ class SimpleString {
     }
     
     /**
-	 * Inserts a string at the end of another string
-	 * 
-	 * @access public
-	 * @param string $name String to be appended
-	 */
+     * Inserts a string at the end of another string
+     * 
+     * @access public
+     * @param string $name String to be appended
+     */
     public function append($string) {
     	$this->string .= $string;
     	
