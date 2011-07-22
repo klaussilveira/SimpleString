@@ -1,4 +1,7 @@
 <?php
+
+require_once 'SimpleString.class.php';
+
 /**
 * SimpleStringTest
 *
@@ -10,8 +13,6 @@
 * @version 0.1
 * @todo Using one function for each test case is evil, need to fix this
 */
-require_once 'SimpleString.class.php';
-
 class SimpleStringTest extends PHPUnit_Framework_TestCase {
 	/**
 	 * Testing the code of demo.php

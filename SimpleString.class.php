@@ -108,7 +108,7 @@ class SimpleString {
      * Inserts a string at the end of another string
      * 
      * @access public
-     * @param string $name String to be appended
+     * @param string $string String to be appended
      */
     public function append($string) {
     	$this->string .= $string;
@@ -120,7 +120,7 @@ class SimpleString {
 	 * Inserts a string at the beginning of another string
 	 * 
 	 * @access public
-	 * @param string $name String to be prepended
+	 * @param string $string String to be prepended
 	 */
 	public function prepend($string) {
     	$this->string = $string . $this->string;
@@ -241,7 +241,7 @@ class SimpleString {
 	 * Censors certain words or characters in a string and replaces them with a *
 	 * 
 	 * @access public
-	 * @param string|array $targets Words or characters to be censored
+	 * @param string|array $words Words or characters to be censored
 	 */
 	public function censor($words) {
 		if(is_array($words)) {
