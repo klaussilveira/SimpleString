@@ -13,7 +13,8 @@ require_once 'SimpleString.class.php';
 * @version 0.1
 * @todo Using one function for each test case is evil, need to fix this
 */
-class SimpleStringTest extends PHPUnit_Framework_TestCase {
+class SimpleStringTest extends PHPUnit_Framework_TestCase
+{
     /**
      * Testing the code of demo.php
      * 
@@ -86,11 +87,11 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals('Lorem ipsum Lechuga', $string->__toString());
 
         $newString=new SimpleString('Lorem ipsum Lechuga');
-        $newString->shorten(3,true);
+        $newString->shorten(3, true);
         $this->assertEquals('', $newString->__toString());
 
         $newString=new SimpleString('Lorem ipsum Lechuga');
-        $newString->shorten(6,true);
+        $newString->shorten(6, true);
         $this->assertEquals('Lorem', $newString->__toString());
     }
 
@@ -126,7 +127,7 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase {
 
         // substr
         $string = new SimpleString('Lechuga Ipsum Dolor');
-        $string->substr(6,10);
+        $string->substr(6, 10);
         $this->assertEquals('a Ipsum Do', $string->__toString());
     }
 
