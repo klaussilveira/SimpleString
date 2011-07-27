@@ -317,8 +317,8 @@ class SimpleString
      */
     public function censor($words) {
         if (is_array($words)) {
-            foreach($words as $word) {
-                foreach(str_split($word) as $letter) {
+            foreach ($words as $word) {
+                foreach (str_split($word) as $letter) {
                     $censor[] = '*';
                 }
                 $this->string = str_replace($word, implode($censor), $this->string);
