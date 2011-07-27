@@ -15,14 +15,15 @@
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
 * @version 0.1
 */
-class SimpleString {
+class SimpleString
+{
     
     /**
      * String value that we'll be manipulating
      * 
      * @var string
      */
-    private $string;
+    public $string;
     
     /**
      * Object instantiation and encapsulation of the string value
@@ -44,7 +45,8 @@ class SimpleString {
      */
     public function __call($name, $arguments) {
         /**
-         * List of built-in functions that have the haystack after everything else
+         * List of built-in functions that have the 
+         * haystack after everything else
          */
         $different = array(
             'str_replace',
@@ -55,7 +57,8 @@ class SimpleString {
         );
         
         /**
-         * List of built-in functions that return arrays, not strings, therefore invalid
+         * List of built-in functions that return arrays, not strings, 
+         * therefore invalid for our fluent interface
          */
         $invalid = array(
             'explode',
@@ -67,37 +70,40 @@ class SimpleString {
         );
         
         /**
-         * Once we receive the method through overloading, we check the built-in function
-         * existance and if it has a str or str_ prefix, if it does, we need to fix it
+         * Once we receive the method through overloading, we check the 
+         * built-in function and if it has a prefix, we need to fix it
          */
-        if(function_exists("str$name")) {
+        if (function_exists("str$name")) {
             $name = "str$name";
-        } elseif(function_exists("str_$name")) {
+        } elseif (function_exists("str_$name")) {
             $name = "str_$name";
-        } elseif(!function_exists($name)) {
+        } elseif (!function_exists($name)) {
             throw new BadMethodCallException('Function does not exist.');
             return false;
         } 
         
         /**
-         * If our built-in function is invalid, meaning that it doesn't return a string, we throw an exception and leave
+         * If our built-in function is invalid, meaning that it 
+         * doesn't return a string, we throw an exception and leave
          */
-        if(in_array($name, $invalid)) {
+        if (in_array($name, $invalid)) {
             throw new BadMethodCallException('Function does not returns a string, while SimpleString only works with string return values.');
             return false;
         }
         
         /**
-         * If our built-in function is different, meaning that it has different parameter order, we change the order
+         * If our built-in function is different, meaning that it 
+         * has different parameter order, we change the order
          */
-        if(in_array($name, $different)) {
+        if (in_array($name, $different)) {
             $arguments = array_merge($arguments, array($this->string));
         } else {
             $arguments = array_merge(array($this->string), $arguments);
         }
         
         /**
-         * Call the built-in function and put it's return into our string property
+         * Call the built-in function and put it's return into 
+         * our string property
          */
         $this->string = call_user_func_array($name, $arguments);
         
@@ -144,13 +150,13 @@ class SimpleString {
      * 
      * @access public
      * @param int $limit Limit of characters
-     * @param boolean $round (optional) Round to the last word and don't cut words
+     * @param boolean $round Round to the last word and don't cut words
      */
     public function shorten($limit, $round = false) {
-        if(strlen($this->string) >= $limit) {
+        if (strlen($this->string) >= $limit) {
             $this->string = substr($this->string, 0, $limit);
             
-            if($round) {
+            if ($round) {
                 $word = strrpos($this->string, ' ');
                 $this->string = substr($this->string, 0, $word);
             }
@@ -180,7 +186,7 @@ class SimpleString {
     public function scramble() {
         $string = explode(' ', $this->string);
         
-        foreach($string as &$word) {
+        foreach ($string as &$word) {
             $word = str_shuffle($word);
         }
         
@@ -204,10 +210,76 @@ class SimpleString {
      * Cleans and optimizes the string to be search engine friendly (SEO)
      * 
      * @access public
-     * @param string $separator (optional) Character that separates words
+     * @param string $separator Character that separates words
      */
     public function seo($separator = '-'){
-        $accents = array('Š' => 'S', 'š' => 's', 'Ð' => 'Dj','Ž' => 'Z', 'ž' => 'z', 'À' => 'A', 'Á' => 'A', 'Â' => 'A', 'Ã' => 'A', 'Ä' => 'A', 'Å' => 'A', 'Æ' => 'A', 'Ç' => 'C', 'È' => 'E', 'É' => 'E', 'Ê' => 'E', 'Ë' => 'E', 'Ì' => 'I', 'Í' => 'I', 'Î' => 'I', 'Ï' => 'I', 'Ñ' => 'N', 'Ò' => 'O', 'Ó' => 'O', 'Ô' => 'O', 'Õ' => 'O', 'Ö' => 'O', 'Ø' => 'O', 'Ù' => 'U', 'Ú' => 'U', 'Û' => 'U', 'Ü' => 'U', 'Ý' => 'Y', 'Þ' => 'B', 'ß' => 'Ss','à' => 'a', 'á' => 'a', 'â' => 'a', 'ã' => 'a', 'ä' => 'a', 'å' => 'a', 'æ' => 'a', 'ç' => 'c', 'è' => 'e', 'é' => 'e', 'ê' => 'e', 'ë' => 'e', 'ì' => 'i', 'í' => 'i', 'î' => 'i', 'ï' => 'i', 'ð' => 'o', 'ñ' => 'n', 'ò' => 'o', 'ó' => 'o', 'ô' => 'o', 'õ' => 'o', 'ö' => 'o', 'ø' => 'o', 'ù' => 'u', 'ú' => 'u', 'û' => 'u', 'ý' => 'y', 'ý' => 'y', 'þ' => 'b', 'ÿ' => 'y', 'ƒ' => 'f');
+        $accents = array('Š' => 'S',
+                         'š' => 's',
+                         'Ð' => 'Dj',
+                         'Ž' => 'Z',
+                         'ž' => 'z',
+                         'À' => 'A',
+                         'Á' => 'A',
+                         'Â' => 'A',
+                         'Ã' => 'A',
+                         'Ä' => 'A',
+                         'Å' => 'A',
+                         'Æ' => 'A',
+                         'Ç' => 'C',
+                         'È' => 'E',
+                         'É' => 'E',
+                         'Ê' => 'E',
+                         'Ë' => 'E',
+                         'Ì' => 'I',
+                         'Í' => 'I',
+                         'Î' => 'I',
+                         'Ï' => 'I',
+                         'Ñ' => 'N',
+                         'Ò' => 'O',
+                         'Ó' => 'O',
+                         'Ô' => 'O',
+                         'Õ' => 'O',
+                         'Ö' => 'O',
+                         'Ø' => 'O',
+                         'Ù' => 'U',
+                         'Ú' => 'U',
+                         'Û' => 'U',
+                         'Ü' => 'U',
+                         'Ý' => 'Y',
+                         'Þ' => 'B',
+                         'ß' => 'Ss',
+                         'à' => 'a',
+                         'á' => 'a',
+                         'â' => 'a',
+                         'ã' => 'a',
+                         'ä' => 'a',
+                         'å' => 'a',
+                         'æ' => 'a',
+                         'ç' => 'c',
+                         'è' => 'e',
+                         'é' => 'e',
+                         'ê' => 'e',
+                         'ë' => 'e',
+                         'ì' => 'i',
+                         'í' => 'i',
+                         'î' => 'i',
+                         'ï' => 'i',
+                         'ð' => 'o',
+                         'ñ' => 'n',
+                         'ò' => 'o',
+                         'ó' => 'o',
+                         'ô' => 'o',
+                         'õ' => 'o',
+                         'ö' => 'o',
+                         'ø' => 'o',
+                         'ù' => 'u',
+                         'ú' => 'u',
+                         'û' => 'u',
+                         'ý' => 'y',
+                         'ý' => 'y',
+                         'þ' => 'b',
+                         'ÿ' => 'y',
+                         'ƒ' => 'f');
         $this->string = strtr($this->string, $accents);
         $this->string = strtolower($this->string);
         $this->string = preg_replace('/[^a-zA-Z0-9\s]/', '', $this->string);
@@ -223,11 +295,11 @@ class SimpleString {
      * 
      * @access public
      * @param string|array $targets Words or characters to be emphasized
-     * @param string $rule HTML tag that will be used for emphasis (e.g: strong, em)
+     * @param string $rule HTML tag that will be used for emphasis
      */
     public function emphasize($targets, $rule) {
-        if(is_array($targets)) {
-            foreach($targets as $target) {
+        if (is_array($targets)) {
+            foreach ($targets as $target) {
                 $this->string = str_replace($target, "<{$rule}>{$target}</{$rule}>", $this->string);
             }
         } else {
@@ -244,7 +316,7 @@ class SimpleString {
      * @param string|array $words Words or characters to be censored
      */
     public function censor($words) {
-        if(is_array($words)) {
+        if (is_array($words)) {
             foreach($words as $word) {
                 foreach(str_split($word) as $letter) {
                     $censor[] = '*';
