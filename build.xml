@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="SimpleString" default="build" basedir=".">
- <property name="source" value="src"/>
+ <property name="source" value="."/>
 
  <target name="clean"
          description="Clean up and create artifact directories">
