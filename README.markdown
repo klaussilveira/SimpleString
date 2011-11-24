@@ -5,8 +5,8 @@ SimpleString also uses overloading to create an object-oriented interface for bu
 
 ## Authors and contributors
 * [Klaus Silveira](http://www.klaussilveira.com) (Creator, developer, support)
-* [Thiago Lechuga] (Developer)
-* [Gusto Maia] (Developer)
+* [Thiago Lechuga](https://github.com/thiagoalz) (Developer)
+* [Guto Maia](https://github.com/gutomaia) (Developer)
 
 ## License
 [New BSD license](http://www.opensource.org/licenses/bsd-license.php)
