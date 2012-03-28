@@ -86,146 +86,143 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
 
     public function testScramble()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor');
+        $string->scramble();
+        $this->assertRegExp('/[Lorem]+ [ipsum]+ [dolor]+/', $string->__toString());
     }
 
     public function testShuffle()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor');
+        $string->shuffle();
+        $this->assertRegExp('/[Loremipsudl ]+/', $string->__toString());
     }
 
     public function testSeo()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Your mother is so ugly, glCullFace always returns TRUE.');
+        $string->seo();
+        $this->assertEquals('your-mother-is-so-ugly-glcullface-always-returns-true', $string->__toString());
+        
+        $string = new SimpleString('Your mother is so ugly, glCullFace always returns TRUE.');
+        $string->seo('_');
+        $this->assertEquals('your_mother_is_so_ugly_glcullface_always_returns_true', $string->__toString());
+        
+        $string = new SimpleString('Acentos serão reconhecidos e substituídos.');
+        $string->seo();
+        $this->assertEquals('acentos-serao-reconhecidos-e-substituidos', $string->__toString());
     }
 
     public function testEmphasize()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor');
+        $string->emphasize('ipsum', 'strong');
+        $this->assertEquals('Lorem <strong>ipsum</strong> dolor', $string->__toString());
+        
+        $string = new SimpleString('Lorem ipsum dolor');
+        $string->emphasize(array('Lorem', 'dolor'), 'em');
+        $this->assertEquals('<em>Lorem</em> ipsum <em>dolor</em>', $string->__toString());
     }
 
     public function testCensor()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor');
+        $string->censor('ipsum');
+        $this->assertEquals('Lorem ***** dolor', $string->__toString());
+        
+        $string = new SimpleString('Lorem ipsum dolor');
+        $string->censor(array('Lorem', 'dolor'));
+        $this->assertEquals('***** ipsum *****', $string->__toString());
     }
 
     public function testToLowerCase()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor');
+        $string->toLowerCase();
+        $this->assertEquals('lorem ipsum dolor', $string->__toString());
     }
 
     public function testToUpperCase()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor');
+        $string->toUpperCase();
+        $this->assertEquals('LOREM IPSUM DOLOR', $string->__toString());
     }
 
     public function testToSentenceCase()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('LOREM IPSUM DOLOR');
+        $string->toSentenceCase();
+        $this->assertEquals('Lorem ipsum dolor', $string->__toString());
     }
 
     public function testToTitleCase()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('LOREM IPSUM DOLOR');
+        $string->toTitleCase();
+        $this->assertEquals('Lorem Ipsum Dolor', $string->__toString());
     }
 
     public function testToUnderscores()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('lorem ipsum dolor');
+        $string->toUnderscores();
+        $this->assertEquals('lorem_ipsum_dolor', $string->__toString());
     }
 
     public function testToCamelCase()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor');
+        $string->toCamelCase();
+        $this->assertEquals('loremIpsumDolor', $string->__toString());
     }
 
     public function testRemoveNonAlpha()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem !15@()!@##$*(dolor');
+        $string->removeNonAlpha();
+        $this->assertEquals('Lorem dolor', $string->__toString());
     }
 
     public function testRemoveNonAlphanumeric()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem !15@()!@##$*(dolor');
+        $string->removeNonAlphanumeric();
+        $this->assertEquals('Lorem 15dolor', $string->__toString());
     }
 
     public function testRemoveNonNumeric()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem !15@()!@##$*(dolor');
+        $string->removeNonNumeric();
+        $this->assertEquals('15', $string->__toString());
     }
 
     public function testRemoveDuplicates()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor sit amet dolor');
+        $string->removeDuplicates();
+        $this->assertEquals('Lorem ipsum dolor sit amet', $string->__toString());
     }
 
     public function testRemoveDelimiters()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum, dolor sit-amet!');
+        $string->removeDelimiters();
+        $this->assertEquals('Loremipsumdolorsitamet', $string->__toString());
     }
 
     public function testIntersect()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor sit amet');
+        $string->intersect('Avis sit amet nepet quisquam');
+        $this->assertEquals('sit amet', $string->__toString());
     }
 
     public function testLenght()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor sit amet');
+        $this->assertEquals(26, $string->lenght());
     }
 
     public function testWords()
@@ -242,10 +239,12 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
 
     public function testContains()
     {
-        // Remove the following lines when you implement this test.
-        $this->markTestIncomplete(
-          'This test has not been implemented yet.'
-        );
+        $string = new SimpleString('Lorem ipsum dolor sit amet');
+        $this->assertTrue($string->contains('dolor'));
+        $this->assertTrue($string->contains('ipsum'));
+        $this->assertTrue($string->contains('sit'));
+        $this->assertFalse($string->contains('lorem'));
+        $this->assertFalse($string->contains('Avis'));
     }
 
     public function testFluentInterface()

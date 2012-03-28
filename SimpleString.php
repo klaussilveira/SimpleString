@@ -330,13 +330,20 @@ class SimpleString
     {
         if (is_array($words)) {
             foreach ($words as $word) {
+                $censor = array();
+                
                 foreach (str_split($word) as $letter) {
                     $censor[] = '*';
                 }
+                
                 $this->string = str_replace($word, implode($censor), $this->string);
             }
         } else {
-            $this->string = str_replace($words, "*", $this->string);    
+            foreach (str_split($words) as $letter) {
+                $censor[] = '*';
+            }
+            
+            $this->string = str_replace($words, implode($censor), $this->string);    
         }
         
         return $this;
