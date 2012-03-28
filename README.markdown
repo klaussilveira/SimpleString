@@ -1,4 +1,6 @@
 # SimpleString
+[![Build Status](https://secure.travis-ci.org/klaussilveira/SimpleString.png)](http://travis-ci.org/klaussilveira/SimpleString)
+
 A small library for string manipulation with PHP. SimpleString uses method overloading to create an object-oriented interface for the built-in string functions in PHP. It implements a fluent interface, improving how we manipulate strings, and extends functionality by providing common implementations. It also aims to eliminate the problems of unorganized function names.
 
 SimpleString also uses overloading to create an object-oriented interface for built-in string functions. Functions starting with str or str_ can just be used with their actual name, not prefix. So: strtolower = tolower, str_replace = replace. Functions whose return values are not string are invalid and will throw exceptions. 
@@ -15,7 +17,6 @@ SimpleString also uses overloading to create an object-oriented interface for bu
 * add more functionality, but keep the library simple and easy to use (loyal to it's name)
 * create a better documentation (detail every method)
 * error handling can, and should, be improved (throw decent exceptions)
-* test, test, test (unit tests, of course!)
 
 ## Using SimpleString
 The idea behind SimpleString is to keep things very easy to use, while giving lot's of power to the user. Check it out:

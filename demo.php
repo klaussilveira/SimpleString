@@ -1,6 +1,6 @@
 <?php
 
-require('SimpleString.class.php');
+require('SimpleString.php');
 
 $string = new SimpleString('lorem ipsum dolor sit amet lorem ipsum');
 $string->shorten(10);

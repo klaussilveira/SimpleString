@@ -1,4 +1,5 @@
 <?php
+
 /**
 * SimpleString
 *
@@ -13,11 +14,10 @@
 * @author Klaus Silveira <contact@klaussilveira.com>
 * @package simplestring
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
-* @version 0.1
+* @version 0.2
 */
 class SimpleString
 {
-    
     /**
      * String value that we'll be manipulating
      * 
@@ -31,7 +31,8 @@ class SimpleString
      * @access public
      * @param string $string String value that will be manipulated
      */
-    public function __construct($string) {
+    public function __construct($string)
+    {
         $this->string = $string;
     }
     
@@ -43,7 +44,8 @@ class SimpleString
      * @param string $name Name of the method being called
      * @param array $arguments Arguments being passed to the method
      */
-    public function __call($name, $arguments) {
+    public function __call($name, $arguments)
+    {
         /**
          * List of built-in functions that have the 
          * haystack after everything else
@@ -116,7 +118,8 @@ class SimpleString
      * @access public
      * @param string $string String to be appended
      */
-    public function append($string) {
+    public function append($string)
+    {
         $this->string .= $string;
         
         return $this;
@@ -128,7 +131,8 @@ class SimpleString
      * @access public
      * @param string $string String to be prepended
      */
-    public function prepend($string) {
+    public function prepend($string)
+    {
         $this->string = $string . $this->string;
         
         return $this;
@@ -139,7 +143,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function chop() {
+    public function chop()
+    {
         $this->string = substr($this->string, 0, -1);
         
         return $this;
@@ -152,7 +157,8 @@ class SimpleString
      * @param int $limit Limit of characters
      * @param boolean $round Round to the last word and don't cut words
      */
-    public function shorten($limit, $round = false) {
+    public function shorten($limit, $round = false)
+    {
         if (strlen($this->string) >= $limit) {
             $this->string = substr($this->string, 0, $limit);
             
@@ -170,7 +176,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function reverse() {
+    public function reverse()
+    {
         $string = str_split($this->string);
         $string = array_reverse($string);
         $this->string = implode($string);
@@ -183,7 +190,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function scramble() {
+    public function scramble()
+    {
         $string = explode(' ', $this->string);
         
         foreach ($string as &$word) {
@@ -200,7 +208,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function shuffle() {
+    public function shuffle()
+    {
         $this->string = str_shuffle($this->string);
         
         return $this;
@@ -212,7 +221,8 @@ class SimpleString
      * @access public
      * @param string $separator Character that separates words
      */
-    public function seo($separator = '-'){
+    public function seo($separator = '-')
+    {
         $accents = array('Š' => 'S',
                          'š' => 's',
                          'Ð' => 'Dj',
@@ -297,7 +307,8 @@ class SimpleString
      * @param string|array $targets Words or characters to be emphasized
      * @param string $rule HTML tag that will be used for emphasis
      */
-    public function emphasize($targets, $rule) {
+    public function emphasize($targets, $rule)
+    {
         if (is_array($targets)) {
             foreach ($targets as $target) {
                 $this->string = str_replace($target, "<{$rule}>{$target}</{$rule}>", $this->string);
@@ -315,7 +326,8 @@ class SimpleString
      * @access public
      * @param string|array $words Words or characters to be censored
      */
-    public function censor($words) {
+    public function censor($words)
+    {
         if (is_array($words)) {
             foreach ($words as $word) {
                 foreach (str_split($word) as $letter) {
@@ -335,7 +347,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function toLowerCase() {
+    public function toLowerCase()
+    {
         $this->string = strtolower($this->string);
         
         return $this;
@@ -346,7 +359,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function toUpperCase() {
+    public function toUpperCase()
+    {
         $this->string = strtoupper($this->string);
         
         return $this;
@@ -357,7 +371,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function toSentenceCase() {
+    public function toSentenceCase()
+    {
         $this->toLowerCase();
         $this->string = ucfirst($this->string);
         
@@ -369,7 +384,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function toTitleCase() {
+    public function toTitleCase()
+    {
         $this->toLowerCase();
         $this->string = ucwords($this->string);
         
@@ -381,7 +397,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function toUnderscores() {
+    public function toUnderscores()
+    {
         $this->toLowerCase();
         $this->string = str_replace(' ', '_', $this->string);
         
@@ -393,7 +410,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function toCamelCase() {
+    public function toCamelCase()
+    {
         $this->string = ucwords($this->string);
         $this->string = str_replace(' ', '', $this->string);
         $this->string[0] = strtolower($this->string[0]);
@@ -406,7 +424,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function removeNonAlpha() {
+    public function removeNonAlpha()
+    {
         $this->string = preg_replace('/[^a-zA-Z\s]/', '', $this->string);
         
         return $this;
@@ -417,7 +436,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function removeNonAlphanumeric() {
+    public function removeNonAlphanumeric()
+    {
         $this->string = preg_replace('/[^a-zA-Z0-9\s]/', '', $this->string);
         
         return $this;
@@ -428,7 +448,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function removeNonNumeric() {
+    public function removeNonNumeric()
+    {
         $this->string = preg_replace('/[^0-9\s]/', '', $this->string);
         
         return $this;
@@ -439,7 +460,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function removeDuplicates() {
+    public function removeDuplicates()
+    {
         $string = explode(' ', $this->string);
         $string = array_unique($string);
         $this->string = implode(' ', $string);
@@ -452,7 +474,8 @@ class SimpleString
      * 
      * @access public
      */
-    public function removeDelimiters() {
+    public function removeDelimiters()
+    {
         $delimiters = array(
             ' ',
             '-',
@@ -473,7 +496,8 @@ class SimpleString
      * @access public
      * @param string $words String to be intersected
      */
-    public function intersect($words) {
+    public function intersect($words)
+    {
         $string = explode(' ', $this->string);
         $words = explode(' ', $words);
         $intersection = array_intersect($string, $words);
@@ -488,7 +512,8 @@ class SimpleString
      * @access public
      * @return int String lenght
      */
-    public function lenght() {
+    public function lenght()
+    {
         return strlen($this->string);
     }
     
@@ -498,7 +523,8 @@ class SimpleString
      * @access public
      * @return int Word count
      */
-    public function words() {
+    public function words()
+    {
         return str_word_count($this->string);
     }
     
@@ -509,7 +535,8 @@ class SimpleString
      * @param string $string String to be checked
      * @return boolean False if it does not contain, true if it does
      */
-    public function contains($string) {
+    public function contains($string)
+    {
         if (strpos($this->string, $string) === false) {
             return false;
         } else {
@@ -519,8 +546,12 @@ class SimpleString
     
     /**
      * Returns our manipulated string when the object is echoed
+     * 
+     * @access public
+     * @return string Manipulated string
      */
-    public function __toString() {
+    public function __toString()
+    {
         return $this->string;
     }
 }

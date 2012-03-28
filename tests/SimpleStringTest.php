@@ -1,6 +1,6 @@
 <?php
 
-require_once 'SimpleString.class.php';
+require_once 'SimpleString.php';
 
 /**
 * SimpleStringTest
@@ -20,7 +20,8 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
      * 
      * @access public
      */
-    public function testDemo() {
+    public function testDemo()
+    {
         // Cumulative changes
         $string = new SimpleString('lorem ipsum dolor Lechuga amet lorem ipsum');
         $string->shorten(10);
@@ -48,7 +49,8 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
      * @todo Cover more custom methods
      * @todo Maybe break the whole thing with more tests?
      */
-    public function testCreatedMethods() {
+    public function testCreatedMethods()
+    {
         // append
         $string = new SimpleString('ipsum Lechuga amet');
         $string->append(" lorem");
@@ -100,7 +102,8 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
      * 
      * @access public
      */
-    public function testCreatedMethodsChain() {
+    public function testCreatedMethodsChain()
+    {
         $string = new SimpleString('ipsum Lechuga amet');
         $string->append(" lorem")->prepend("Lorem ")->chop()->reverse()->reverse();
         $this->assertEquals('Lorem ipsum Lechuga amet lore', $string->__toString());
@@ -114,7 +117,8 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
      * 
      * @access public
      */
-    public function testOverloadsWithCall_Regular() {
+    public function testOverloadsWithCallRegular()
+    {
         // tolower
         $string = new SimpleString('Lechuga Ipsum Dolor');
         $string->tolower();
@@ -139,7 +143,8 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
      * 
      * @access public
      */
-    public function testOverloadsWithCall_Different() {
+    public function testOverloadsWithCallDifferent()
+    {
         // replace
         $string = new SimpleString('Lorem ipsum dolor Lechuga amet lorem ipsum');
         $string->replace('lorem', 'mortem');
@@ -165,7 +170,8 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
      * @access public
      * @expectedException BadMethodCallException
      */
-    public function testOverloadsWithCall_Invalid(){
+    public function testOverloadsWithCallInvalid()
+    {
         $string = new SimpleString('lorem ipsum dolor Lechuga amet lorem ipsum');
         $string->naoExiste();
     }
@@ -179,7 +185,8 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
      * @access public
      * @expectedException BadMethodCallException
      */
-    public function testOverloadsWithCall_Explode(){
+    public function testOverloadsWithCallExplode()
+    {
         $string = new SimpleString('lorem ipsum dolor Lechuga amet lorem ipsum');
         $string->explode();
     }
@@ -193,7 +200,8 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
      * @access public
      * @expectedException BadMethodCallException
      */
-    public function testOverloadsWithCall_Split(){
+    public function testOverloadsWithCallSplit()
+    {
         $string = new SimpleString('lorem ipsum dolor Lechuga amet lorem ipsum');
         $string->split();
     }
