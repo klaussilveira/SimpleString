@@ -75,14 +75,14 @@ class SimpleString
          * Once we receive the method through overloading, we check the 
          * built-in function and if it has a prefix, we need to fix it
          */
-        if (function_exists("mb_str$name")) {
-            $name = "mb_str$name";
-        } elseif (function_exists("mb_str_$name")) {
-            $name = "mb_str_$name";
-        } elseif (function_exists("str$name")) {
-            $name = "str$name";
-        } elseif (function_exists("str_$name")) {
-            $name = "str_$name";
+        if (function_exists('mb_str'.$name)) {
+            $name = 'mb_str'.$name;
+        } elseif (function_exists('mb_str_'.$name)) {
+            $name = 'mb_str_'.$name;
+        } elseif (function_exists('str'.$name)) {
+            $name = 'str'.$name;
+        } elseif (function_exists('str_'.$name)) {
+            $name = 'str_'.$name;
         } elseif (!function_exists($name)) {
             throw new BadMethodCallException('Function does not exist.');
             return false;
