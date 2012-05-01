@@ -17,6 +17,7 @@ SimpleString also uses overloading to create an object-oriented interface for bu
 * add more functionality, but keep the library simple and easy to use (loyal to it's name)
 * create a better documentation (detail every method)
 * error handling can, and should, be improved (throw decent exceptions)
+* complete [Multibyte String](http://php.net/manual/book.mbstring.php) awareness
 
 ## Using SimpleString
 The idea behind SimpleString is to keep things very easy to use, while giving lot's of power to the user. Check it out:
