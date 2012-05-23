@@ -363,13 +363,13 @@ built-in PHP string functions.</description>
         </argument>
       </method>
       <method final="false" abstract="false" static="false" visibility="public" line="419">
-        <name>lenght</name>
+        <name>length</name>
         <docblock>
-          <description>Returns the lenght of a string</description>
+          <description>Returns the length of a string</description>
           <long-description>
 </long-description>
           <tag name="access" description="public" line="413"/>
-          <tag name="return" description="String lenght" type="int" line="413">
+          <tag name="return" description="String length" type="int" line="413">
             <type by_reference="false">int</type>
           </tag>
         </docblock>

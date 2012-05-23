@@ -219,10 +219,10 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('sit amet', $string->__toString());
     }
 
-    public function testLenght()
+    public function testLength()
     {
         $string = new SimpleString('Lorem ipsum dolor sit amet');
-        $this->assertEquals(26, $string->lenght());
+        $this->assertEquals(26, $string->length());
     }
 
     public function testWords()
