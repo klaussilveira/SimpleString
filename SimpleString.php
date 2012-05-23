@@ -518,12 +518,12 @@ class SimpleString
     }
     
     /**
-     * Returns the lenght of a string
+     * Returns the length of a string
      * 
      * @access public
-     * @return int String lenght
+     * @return int String length
      */
-    public function lenght()
+    public function length()
     {
         return strlen($this->string);
     }
