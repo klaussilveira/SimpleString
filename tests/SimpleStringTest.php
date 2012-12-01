@@ -341,5 +341,27 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
         $string = new SimpleString('lorem ipsum dolor Lechuga amet lorem ipsum');
         $string->split();
     }
-
+	
+    /**
+     * Testing getString method
+     * 
+     * Testing getString method, verifying that it returns the string property.
+     */
+    public function testGetString()
+    {
+    	$string = new SimpleString('lorem ipsum dolor Lechuga amet lorem ipsum');
+    	$this->assertEquals('lorem ipsum dolor Lechuga amet lorem ipsum', $string->getString());
+    }
+    
+    /**
+     * Testing removeSmartQuotes method
+     * 
+     * This test covers removing smart quotes from the string
+     */
+    public function testRemoveSmartQuotes()
+    {
+    	$string = new SimpleString('ÒSomeÐstringÓ');
+    	$string->removeSmartQuotes();
+    	$this->assertEquals('"Some-string"', $string->__toString());
+    }
 }
