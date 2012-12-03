@@ -502,6 +502,70 @@ class SimpleString
     }
     
     /**
+     * Removes smart quotes from MS Word
+     * 
+     * @link http://shiflett.org/blog/2005/oct/convert-smart-quotes-with-php
+     * @link http://www.toao.net/48-replacing-smart-quotes-and-em-dashes-in-mysql
+     * 
+     * @access public
+     */
+    public function removeSmartQuotes()
+    {
+		$utf8_search = array(
+			"\xe2\x80\x98", 
+			"\xe2\x80\x99", 
+			"\xe2\x80\x9c", 
+			"\xe2\x80\x9d", 
+			"\xe2\x80\x93", 
+			"\xe2\x80\x94", 
+			"\xe2\x80\xa6",
+		);
+		
+		$utf8_replace = array(
+			"'",
+			"'",
+			'"',
+			'"',
+			'-',
+			'--',
+			'...',
+		); 
+		
+		// Replace UTF8 first
+    	$this->string = str_replace($utf8_search, $utf8_replace, $this->string);
+    	
+		$search = array(
+			chr(145),
+			chr(146),
+			chr(147),
+			chr(148),
+			chr(150),
+			chr(151),
+			chr(133),
+			chr(208),
+			chr(210),
+			chr(211),
+		);
+		
+		$replace = array(
+			"'",
+			"'",
+			'"',
+			'"',
+			'-',
+			'-',
+			'...',
+			'-',
+			'"',
+			'"',
+		);
+		
+		$this->string = str_replace($search, $replace, $this->string);
+
+		return $this;
+    }
+    
+    /**
      * Gives the intersection of two strings
      * 
      * @access public
@@ -553,6 +617,17 @@ class SimpleString
         } else {
             return true;
         }
+    }
+    
+    /**
+     * Returns the manipulated string
+     * 
+     * @access public
+     * @return string
+     */
+    public function getString()
+    {
+    	return $this->string;
     }
     
     /**
