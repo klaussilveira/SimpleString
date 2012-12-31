@@ -684,9 +684,7 @@ class SimpleString implements Iterator
     	return $this->string;
     }
 
-
-    public
-    
+   
     /**
      * Returns our manipulated string when the object is echoed
      * 
