@@ -16,7 +16,7 @@
 * @license http://www.opensource.org/licenses/bsd-license.php BSD License
 * @version 0.2
 */
-class SimpleString
+class SimpleString implements Iterator
 {
     /**
      * String value that we'll be manipulating
@@ -24,7 +24,8 @@ class SimpleString
      * @var string
      */
     public $string;
-    
+    private $explodeArray = array();
+    private $canIterate = false;
     /**
      * Object instantiation and encapsulation of the string value
      * 
@@ -47,6 +48,12 @@ class SimpleString
     public function __call($name, $arguments)
     {
         /**
+        * Function names are not case-sensitive in PHP,
+        * make sure matching will work.
+        */
+        $name = strtolower($name);
+
+        /**
          * List of built-in functions that have the 
          * haystack after everything else
          */
@@ -63,7 +70,6 @@ class SimpleString
          * therefore invalid for our fluent interface
          */
         $invalid = array(
-            'explode',
             'split',
             'str_split',
             'preg_split',
@@ -106,7 +112,18 @@ class SimpleString
         } else {
             $arguments = array_merge(array($this->string), $arguments);
         }
-        
+
+        /**
+        * Special handler for explode.
+        */
+        $this->canIterate = false;
+        $this->explodeArray = array();
+        if ($name == 'explode'){
+          $this->explodeArray = explode($arguments[1],$this->string);
+          $this->canIterate = true;
+          return $this;
+        }
+
         /**
          * Call the built-in function and put it's return into 
          * our string property
@@ -115,7 +132,44 @@ class SimpleString
         
         return $this;
     }
-    
+
+    public function rewind()
+    {
+      reset($this->explodeArray);
+    }
+
+    public function current()
+    {
+      if (!$this->canIterate){
+        return false;
+      }
+      $var = current($this->explodeArray);
+      return $var;
+    }
+
+    public function key()
+    {
+      $var = key($this->explodeArray);
+      return $var;
+    }
+
+    public function next()
+    {
+      if (!$this->canIterate){
+        return false;
+      }
+
+      $var = next($this->explodeArray);
+      return $var;
+    }
+
+    public function valid()
+    {
+      $key = key($this->explodeArray);
+      $var = ($key !== NULL && $key !== FALSE);
+      return $var;
+    }
+
     /**
      * Inserts a string at the end of another string
      * 
@@ -629,6 +683,9 @@ class SimpleString
     {
     	return $this->string;
     }
+
+
+    public
     
     /**
      * Returns our manipulated string when the object is echoed
