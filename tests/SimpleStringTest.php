@@ -315,17 +315,27 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Testing invalid method calls
+     * Testing testOverloadedMethodExplode
      * 
-     * Testing overloaded methods using __call. This test case covers 
-     * methods that don't return strings, therefore are invalid.
-     * 
-     * @expectedException BadMethodCallException
+     * Explode is used as an iterator so should no longer cause an error. Check it correctly
+     * iterates over string.
      */
-    public function testInvalidOverloadedMethodExplode()
+    public function testOverloadedMethodExplode()
     {
         $string = new SimpleString('lorem ipsum dolor Lechuga amet lorem ipsum');
-        $string->explode();
+        foreach ($string->explode(' ') as $key => $value){
+        
+          $List[] = $value;
+        
+        }
+        
+        $this->assertEquals('lorem',$List[0]);
+        $this->assertEquals('ipsum',$List[1]);
+        $this->assertEquals('dolor',$List[2]);
+        $this->assertEquals('Lechuga',$List[3]);
+        $this->assertEquals('amet',$List[4]);   
+        $this->assertEquals('lorem',$List[5]);
+        $this->assertEquals('ipsum',$List[6]);                                        
     }
 
     /**
