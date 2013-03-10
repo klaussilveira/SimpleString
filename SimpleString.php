@@ -618,6 +618,20 @@ class SimpleString
             return true;
         }
     }
+	
+	/**
+	 * Generates a hash value (message digest)
+	 *
+	 * @access public
+	 * @param string $algo Name of the selected hashing algorith (ie "md5", "sha256", "haval160,4" ect..)
+	 * @param boolean $raw_output When set to TRUE, outputs raw binary data. FALSE outputs lowercase hexists.
+	 * @return string
+	 */
+	public function hash($algo,$raw_output = false)
+	{
+		$this->string = hash($algo,$this->getString(),$raw_output);
+		return $this;
+	}
     
     /**
      * Returns the manipulated string
