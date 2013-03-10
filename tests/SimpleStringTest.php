@@ -364,4 +364,11 @@ class SimpleStringTest extends PHPUnit_Framework_TestCase
     	$string->removeSmartQuotes();
     	$this->assertEquals('"Some-string"', $string->__toString());
     }
+	
+	public function testhash()
+	{
+		$string	=	new SimpleString("The quick brown fox jumped over the lazy dog.");
+		$string->hash("ripemd160");
+		$this->assertEquals("ec457d0a974c48d5685a7efa03d137dc8bbde7e3",$string->__toString());
+	}
 }
