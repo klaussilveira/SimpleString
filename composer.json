@@ -1,0 +1,12 @@
+{
+    "name": "klaussilveira/simple-string",
+    "license": "BSD-2-Clause",
+    "type": "project",
+    "description": "A small library for object-oriented string manipulation with PHP. ",
+    "autoload": {
+        "psr-0": { "Simple\\Type": "src/" }
+    },
+    "require": {
+        "php": ">=5.3.3"
+    }
+}
