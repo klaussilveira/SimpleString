@@ -23,4 +23,18 @@ class StringOverloadTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Simple\\Type\\String', $result);
         $this->assertEquals('a Ipsum Do', $string->toString());
     }
+
+    /**
+    * Testing removeSmartQuotes method
+    *
+    * This test covers removing smart quotes from the string
+    */
+    public function testRemoveSmartQuotes()
+    {
+        $string = new String('“Some–string“');
+        $result = $string->removeSmartQuotes();
+
+        $this->assertInstanceOf('Simple\\Type\\String', $result);
+        $this->assertEquals('"Some-string"', $string->toString());
+    }
 }
